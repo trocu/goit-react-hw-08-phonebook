@@ -13,17 +13,21 @@ export default class App extends Component {
     e.preventDefault();
     // console.log("e.target.value: ", e.target.value);
     // console.log("e.currentTarget: ", e.currentTarget);
+    const { name, value } = e.target;
 
     // const name = e.target.value;
-    const { name, value } = e.target;
     this.setState({ [name]: value });
     // this.setState({ name: value, id: nanoid() });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log("this state name: ", this.state.name);
-    this.reset();
+    // console.log("e.target.value: ", e.target.value);
+    // console.log("e.currentTarget: ", e.currentTarget.name.value);
+    const value = e.currentTarget.name.value;
+    // const { name, value } = e.currentTarget;
+    this.setState({ contacts: [{ id: nanoid(), name: value }] });
+    // console.log("this state name: ", this.state.name);
   };
 
   render() {
