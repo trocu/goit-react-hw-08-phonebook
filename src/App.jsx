@@ -18,39 +18,38 @@ export default class App extends Component {
 
   handleChange = e => {
     e.preventDefault();
-    // console.log("e.target: ", e.target);
-    // console.log("e.currentTarget: ", e.currentTarget);
     const { name, value } = e.target;
-    console.log("name: ", name);
-    console.log("value: ", value);
-
-    // const name = e.target.value;
+    // console.log("e.target: ", { name: name, value: value });
+    // console.log("this.state: ", this.state);
     this.setState({ [name]: value });
-    // this.setState({ name: value, id: nanoid() });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    // console.log("e.target.value: ", e.target.value);
-    // console.log("e.currentTarget: ", e.currentTarget.name.value);
-    // console.log("e.target: ", e.target);
-    // console.log("e.currentTarget: ", e.currentTarget);
+    console.log("Submit state: ", this.state);
+    const form = e.currentTarget;
     const name = e.currentTarget.name.value;
     const number = e.currentTarget.number.value;
-    console.log("name", name);
-    console.log("number", number);
-    // const { name, value } = e.currentTarget;
     this.setState(prevState => ({
       contacts: [...prevState.contacts, { id: nanoid(), name: name, number: number }],
     }));
+    form.reset();
+  };
 
-    // console.log("this state name: ", this.state.name);
+  handleSearch = e => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+    const contacts = this.state.contacts;
+    const filter = contacts.filter(person =>
+      person.name.toLowerCase().includes(value.toLowerCase())
+    );
+    console.log("Search input", value);
+    console.log("Search result: ", filter);
   };
 
   render() {
     const { person, digits, record, contacts } = this.state;
-    // const { id, name, person } = this.state;
-    console.log(this.state);
+    console.log("Render state: ", this.state);
     return (
       <>
         <div>
@@ -92,7 +91,7 @@ export default class App extends Component {
               type="text"
               name="filter"
               value={record}
-              onChange={this.handleChange}
+              onChange={this.handleSearch}
             />
           </label>
           <ul>
