@@ -19,8 +19,6 @@ export default class App extends Component {
   handleChange = e => {
     e.preventDefault();
     const { name, value } = e.target;
-    // console.log("e.target: ", { name: name, value: value });
-    // console.log("this.state: ", this.state);
     this.setState({ [name]: value });
   };
 
@@ -39,16 +37,22 @@ export default class App extends Component {
   handleSearch = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-    const contacts = this.state.contacts;
-    const filter = contacts.filter(person =>
-      person.name.toLowerCase().includes(value.toLowerCase())
-    );
-    console.log("Search input", value);
-    console.log("Search result: ", filter);
+    // const contacts = this.state.contacts;
+    // const filteredContacts = contacts.filter(person =>
+    //   person.name.toLowerCase().includes(value.toLowerCase())
+    // );
+    // console.log("Search input", value);
+    // console.log("Search result: ", filteredContacts);
+    // this.setState({ filteredContacts });
+  };
+
+  filteredContacts = () => {
+    const { contacts, filter } = this.state;
+    return contacts.filter(person => person.name.toLowerCase().includes(filter.toLowerCase()));
   };
 
   render() {
-    const { person, digits, record, contacts } = this.state;
+    const { person, digits, filter, contacts } = this.state;
     console.log("Render state: ", this.state);
     return (
       <>
@@ -90,14 +94,16 @@ export default class App extends Component {
             <input
               type="text"
               name="filter"
-              value={record}
+              value={filter}
               onChange={this.handleSearch}
             />
           </label>
           <ul>
-            {contacts.map(({ id, name, number }) => (
-              <li key={id}>{name + " " + number}</li>
-            ))}
+            {!filter
+              ? contacts.map(({ id, name, number }) => <li key={id}>{name + " " + number}</li>)
+              : this.filteredContacts().map(({ id, name, number }) => (
+                  <li key={id}>{name + " " + number}</li>
+                ))}
           </ul>
         </section>
       </>
