@@ -5,7 +5,6 @@ import { nanoid } from "nanoid";
 import ContactForm from "./components/contactForm/ContactForm";
 import { Filter } from "./components/filter/Filter";
 import { ContactList } from "./components/contactList/ContactList";
-// import debounce from "lodash/debounce";
 
 export default class App extends Component {
   state = {
@@ -19,7 +18,6 @@ export default class App extends Component {
   };
 
   handleSubmit = (name, number) => {
-    console.log("App submit state: ", this.state);
     const { contacts } = this.state;
     if (contacts.some(person => person.name.toLowerCase() === name.toLowerCase())) {
       Report.info(`${name} is already in contacts!`);
@@ -48,8 +46,6 @@ export default class App extends Component {
 
   render() {
     const { filter, contacts } = this.state;
-    console.log("Render state: ", this.state);
-    console.log("Search result: ", this.filteredContacts());
     return (
       <>
         <h1>Phonebook</h1>

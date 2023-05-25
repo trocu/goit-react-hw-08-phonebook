@@ -12,13 +12,11 @@ export default class ContactForm extends Component {
     e.preventDefault();
     const { name, value } = e.target;
     this.setState({ [name]: value });
-    console.log("Change state: ", this.state);
   };
 
   handleSubmit = e => {
     e.preventDefault();
     const { name, number } = this.state;
-    console.log("Contact form submit state: ", this.state);
     this.props.onSubmit(name, number);
     this.setState({ name: "", number: "" });
   };
