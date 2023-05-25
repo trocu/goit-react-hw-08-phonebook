@@ -1,7 +1,10 @@
 import "./App.css";
+import { Report } from "notiflix/build/notiflix-report-aio";
 import { Component } from "react";
 import { nanoid } from "nanoid";
 import ContactForm from "./components/contactForm/ContactForm";
+import { Filter } from "./components/filter/Filter";
+import { ContactList } from "./components/contactList/ContactList";
 // import debounce from "lodash/debounce";
 
 export default class App extends Component {
@@ -15,33 +18,32 @@ export default class App extends Component {
     filter: "",
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    console.log("Submit state: ", this.state);
-    const form = e.currentTarget;
-    const name = form.name.value;
-    const number = form.number.value;
+  handleSubmit = (name, number) => {
+    console.log("App submit state: ", this.state);
+    const { contacts } = this.state;
+    if (contacts.some(person => person.name.toLowerCase() === name.toLowerCase())) {
+      Report.info(`${name} is already in contacts!`);
+      return;
+    }
     this.setState(prevState => ({
-      contacts: [...prevState.contacts, { id: nanoid(), name: name, number: number }],
+      contacts: [...prevState.contacts, { id: nanoid(), name, number }],
     }));
-    form.reset();
   };
 
   handleSearch = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-    // const contacts = this.state.contacts;
-    // const filteredContacts = contacts.filter(person =>
-    //   person.name.toLowerCase().includes(value.toLowerCase())
-    // );
-    // console.log("Search input", value);
-    // console.log("Search result: ", filteredContacts);
-    // this.setState({ filteredContacts });
   };
 
   filteredContacts = () => {
     const { contacts, filter } = this.state;
     return contacts.filter(person => person.name.toLowerCase().includes(filter.toLowerCase()));
+  };
+
+  handleDelete = e => {
+    const { contacts } = this.state;
+    const newContacts = contacts.filter(person => person.id !== e.target.id);
+    this.setState({ contacts: newContacts });
   };
 
   render() {
@@ -54,22 +56,21 @@ export default class App extends Component {
         <ContactForm onSubmit={this.handleSubmit} />
 
         <h2>Contacts</h2>
-        <label>
-          <span>Find contacts by name</span>
-          <input
-            type="text"
-            name="filter"
-            value={filter}
-            onChange={this.handleSearch}
+        <Filter
+          onChange={this.handleSearch}
+          value={filter}
+        />
+        {!filter ? (
+          <ContactList
+            contacts={contacts}
+            onClick={this.handleDelete}
           />
-        </label>
-        <ul>
-          {!filter
-            ? contacts.map(({ id, name, number }) => <li key={id}>{name + " " + number}</li>)
-            : this.filteredContacts().map(({ id, name, number }) => (
-                <li key={id}>{name + " " + number}</li>
-              ))}
-        </ul>
+        ) : (
+          <ContactList
+            contacts={this.filteredContacts()}
+            onClick={this.handleDelete}
+          />
+        )}
       </>
     );
   }
