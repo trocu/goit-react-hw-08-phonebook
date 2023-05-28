@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import css from "./Filter.module.css";
+import PropTypes from 'prop-types';
+import css from './Filter.module.css';
 
 export const Filter = ({ filter, onChange }) => {
   return (
@@ -8,8 +8,8 @@ export const Filter = ({ filter, onChange }) => {
         <span>Find contacts by name</span>
         <input
           className={css.input}
-          type="text"
-          name="filter"
+          type='text'
+          name='filter'
           value={filter}
           onChange={onChange}
         />

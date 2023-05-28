@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import css from "./ContactList.module.css";
+import PropTypes from 'prop-types';
+import css from './ContactList.module.css';
 
 export const ContactList = ({ contacts, onClick }) => {
   return (
@@ -10,11 +10,11 @@ export const ContactList = ({ contacts, onClick }) => {
             className={css.item}
             key={id}
           >
-            {name + " " + number}
+            {name + ' ' + number}
             <button
               className={css.button}
               id={id}
-              type="button"
+              type='button'
               onClick={onClick}
             >
               Delete

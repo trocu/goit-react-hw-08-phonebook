@@ -1,20 +1,20 @@
-import "./App.css";
-import { Report } from "notiflix/build/notiflix-report-aio";
-import { Component } from "react";
-import { nanoid } from "nanoid";
-import ContactForm from "./components/contactForm/ContactForm";
-import { Filter } from "./components/filter/Filter";
-import { ContactList } from "./components/contactList/ContactList";
+import './App.css';
+import { Report } from 'notiflix/build/notiflix-report-aio';
+import { Component } from 'react';
+import { nanoid } from 'nanoid';
+import ContactForm from './components/contactForm/ContactForm';
+import { Filter } from './components/filter/Filter';
+import { ContactList } from './components/contactList/ContactList';
 
 export default class App extends Component {
   state = {
     contacts: [
-      { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-      { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-      { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-      { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-    filter: "",
+    filter: '',
   };
 
   handleSubmit = (name, number) => {
@@ -35,6 +35,9 @@ export default class App extends Component {
 
   filteredContacts = () => {
     const { contacts, filter } = this.state;
+    if (filter === '') {
+      return contacts;
+    }
     return contacts.filter(person => person.name.toLowerCase().includes(filter.toLowerCase()));
   };
 
@@ -45,7 +48,7 @@ export default class App extends Component {
   };
 
   render() {
-    const { filter, contacts } = this.state;
+    const { filter } = this.state;
     return (
       <>
         <h1>Phonebook</h1>
@@ -56,17 +59,10 @@ export default class App extends Component {
           onChange={this.handleSearch}
           value={filter}
         />
-        {!filter ? (
-          <ContactList
-            contacts={contacts}
-            onClick={this.handleDelete}
-          />
-        ) : (
-          <ContactList
-            contacts={this.filteredContacts()}
-            onClick={this.handleDelete}
-          />
-        )}
+        <ContactList
+          contacts={this.filteredContacts()}
+          onClick={this.handleDelete}
+        />
       </>
     );
   }

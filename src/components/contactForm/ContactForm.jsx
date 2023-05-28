@@ -1,11 +1,11 @@
-import { Component } from "react";
-import PropTypes from "prop-types";
-import css from "./ContactForm.module.css";
+import { Component } from 'react';
+import PropTypes from 'prop-types';
+import css from './ContactForm.module.css';
 
 export default class ContactForm extends Component {
   state = {
-    name: "",
-    number: "",
+    name: '',
+    number: '',
   };
 
   handleChange = e => {
@@ -18,7 +18,7 @@ export default class ContactForm extends Component {
     e.preventDefault();
     const { name, number } = this.state;
     this.props.onSubmit(name, number);
-    this.setState({ name: "", number: "" });
+    this.setState({ name: '', number: '' });
   };
 
   render() {
@@ -32,8 +32,8 @@ export default class ContactForm extends Component {
           <span className={css.label}>Name</span>
           <input
             className={css.input}
-            type="text"
-            name="name"
+            type='text'
+            name='name'
             value={name}
             onChange={this.handleChange}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -45,18 +45,18 @@ export default class ContactForm extends Component {
           <span className={css.label}>Number</span>
           <input
             className={css.input}
-            type="tel"
-            name="number"
+            type='tel'
+            name='number'
             value={number}
             onChange={this.handleChange}
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            pattern='\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}'
+            title='Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
             required
           />
         </label>
         <button
           className={css.button}
-          type="submit"
+          type='submit'
         >
           Add contact
         </button>
