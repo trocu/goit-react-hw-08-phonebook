@@ -20,8 +20,11 @@ export default class App extends Component {
     const contactsStorage = JSON.parse(localStorage.getItem(CONTACTS_KEY));
     this.setState({ contacts: contactsStorage });
   }
-  componentDidUpdate() {
-    localStorage.setItem(CONTACTS_KEY, JSON.stringify(this.state.contacts));
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem(CONTACTS_KEY, JSON.stringify(this.state.contacts));
+    }
+    return null;
   }
 
   handleSubmit = (name, number) => {
