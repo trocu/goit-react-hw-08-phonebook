@@ -2,7 +2,7 @@ import './App.css';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
-import ContactForm from './components/contactForm/ContactForm';
+import { ContactForm } from './components/contactForm/ContactForm';
 import { Filter } from './components/filter/Filter';
 import { ContactList } from './components/contactList/ContactList';
 const CONTACTS_KEY = 'contacts-state';
