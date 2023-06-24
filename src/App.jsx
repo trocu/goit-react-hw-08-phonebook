@@ -8,6 +8,12 @@ import { ContactList } from './components/contactList/ContactList';
 const CONTACTS_KEY = 'contacts-state';
 
 export const App = () => {
+  
+  const state = {
+    contacts: [],
+    filter: '',
+  };
+
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
 
