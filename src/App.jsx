@@ -1,29 +1,35 @@
 import './App.css';
 import { Report } from 'notiflix/build/notiflix-report-aio';
-import { useEffect, useState } from 'react';
-import { nanoid } from 'nanoid';
+import { useEffect } from 'react';
+// import { nanoid } from 'nanoid';
 import { ContactForm } from './components/contactForm/ContactForm';
 import { Filter } from './components/filter/Filter';
 import { ContactList } from './components/contactList/ContactList';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts, getFilter } from './redux/selectors';
+import { addContact, fetchContact } from './redux/actions';
 const CONTACTS_KEY = 'contacts-state';
 
 export const App = () => {
-  
-  const state = {
-    contacts: [],
-    filter: '',
-  };
+  // const [contacts, setContacts] = useState([]);
+  // const [filter, setFilter] = useState('');
 
-  const [contacts, setContacts] = useState([]);
-  const [filter, setFilter] = useState('');
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
+  console.log(contacts);
+  console.log(filter);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (localStorage.getItem(CONTACTS_KEY) === null) {
       return;
     }
     const contactsStorage = JSON.parse(localStorage.getItem(CONTACTS_KEY));
-    setContacts(contactsStorage);
-  }, []);
+    // setContacts(contactsStorage);
+    dispatch(fetchContact(contactsStorage));
+    console.log('contactsStorage:', contactsStorage);
+  }, [dispatch]);
 
   useEffect(() => {
     if (contacts.length > 0) {
@@ -38,25 +44,33 @@ export const App = () => {
       Report.info(`${name} is already in contacts!`);
       return;
     }
-    setContacts([...contacts, { id: nanoid(), name, number }]);
+    dispatch(addContact(name, number));
+    // setContacts([...contacts, { id: nanoid(), name, number }]);
   };
 
   const handleSearch = e => {
     const { value } = e.target;
-    setFilter(value);
+    // setFilter(value);
   };
 
+  // const filteredContacts = () => {
+  //   if (filter === '') {
+  //     return contacts;
+  //   }
+  //   return contacts.filter(person => person.name.toLowerCase().includes(filter.toLowerCase()));
+  // };
   const filteredContacts = () => {
     if (filter === '') {
       return contacts;
     }
+    console.log();
     return contacts.filter(person => person.name.toLowerCase().includes(filter.toLowerCase()));
   };
 
-  const handleDelete = e => {
-    const deletedContacts = contacts.filter(person => person.id !== e.target.id);
-    setContacts(deletedContacts);
-  };
+  // const handleDelete = e => {
+  //   const deletedContacts = contacts.filter(person => person.id !== e.target.id);
+  //   setContacts(deletedContacts);
+  // };
 
   return (
     <>
@@ -70,7 +84,7 @@ export const App = () => {
       />
       <ContactList
         contacts={filteredContacts()}
-        onClick={handleDelete}
+        // onClick={handleDelete}
       />
     </>
   );

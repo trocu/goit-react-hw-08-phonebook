@@ -1,14 +1,12 @@
-import { createStore } from 'redux';
-// import { legacy_createStore as createStore } from 'redux';
-// import { configureStore } from 'redux';
+// import { createStore } from 'redux';
+// import { devToolsEnhancer } from '@redux-devtools/extension';
+// import { rootReducer } from './reducer';
+// const enhancer = devToolsEnhancer();
+// export const store = createStore(rootReducer, enhancer);
 
-const state = {
-  contacts: [],
-  filter: '',
-};
+import { configureStore } from '@reduxjs/toolkit';
+import { contactsReducer, filterReducer } from './reducer';
 
-const store = createStore();
-
-//add new contact
-//delete item
-//filter record
+export const store = configureStore({
+  reducer: { contacts: contactsReducer, filter: filterReducer },
+});
