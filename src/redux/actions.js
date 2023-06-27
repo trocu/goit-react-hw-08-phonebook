@@ -19,9 +19,11 @@ export const addContact = createAction('contacts/addContact', (name, number) => 
   };
 });
 
-export const deleteContact = contactId => {
-  return { type: 'contacts/deleteContact', payload: contactId };
-};
+// export const deleteContact = contactId => {
+//   return { type: 'contacts/deleteContact', payload: contactId };
+// };
+
+export const deleteContact = createAction('contacts/deleteContact');
 
 // export const getContact = value => {
 //   return { type: 'contacts/getContact', payload: value };
