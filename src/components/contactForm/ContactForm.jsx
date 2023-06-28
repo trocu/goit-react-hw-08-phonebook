@@ -1,21 +1,15 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
 import css from './ContactForm.module.css';
+import { Report } from 'notiflix/build/notiflix-report-aio';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from '../../redux/selectors';
+import { addContact } from '../../redux/actions';
 
-export const ContactForm = ({ onSubmit }) => {
+export const ContactForm = () => {
+  const contacts = useSelector(getContacts);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-
-  // const [inputs, setInputs] = useState({
-  //   name: '',
-  //   number: '',
-  // });
-
-  // const handleChange = e => {
-  //   e.preventDefault();
-  //   const { name, value } = e.target;
-  //   setInputs(prevState => ({ ...prevState, [name]: value }));
-  // };
+  const dispatch = useDispatch();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -31,7 +25,11 @@ export const ContactForm = ({ onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit(name, number);
+    if (contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase())) {
+      Report.info(`${name} is already in contacts!`);
+      return;
+    }
+    dispatch(addContact(name, number));
     setName('');
     setNumber('');
   };
@@ -75,8 +73,4 @@ export const ContactForm = ({ onSubmit }) => {
       </button>
     </form>
   );
-};
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };
