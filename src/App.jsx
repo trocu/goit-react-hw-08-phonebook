@@ -4,12 +4,12 @@ import { ContactForm } from './components/contactForm/ContactForm';
 import { Filter } from './components/filter/Filter';
 import { ContactList } from './components/contactList/ContactList';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from './redux/selectors';
-import { fetchContact } from './redux/actions';
+import { selectContacts } from './redux/selectors';
+import { fetchContact } from './redux/contactsSlice';
 import { CONTACTS_KEY } from './redux/constants';
 
 export const App = () => {
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   useEffect(() => {
