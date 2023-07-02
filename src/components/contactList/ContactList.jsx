@@ -13,27 +13,31 @@ export const ContactList = () => {
 
   return (
     <div className={css.wrapper}>
-      <ul className={css.list}>
-        {filteredContacts.map(({ id, name, phone }) => (
-          <li
-            className={css.item}
-            key={id}
-          >
-            <div className={css.box}>
-              <p className={css.name}>{name}</p>
-              <p className={css.phone}>{phone}</p>
-            </div>
-            <button
-              className={css.button}
-              id={id}
-              type='button'
-              onClick={handleDelete}
+      {filteredContacts.length === 0 ? (
+        <b className={css.info}>The phonebook is empty</b>
+      ) : (
+        <ul className={css.list}>
+          {filteredContacts.map(({ id, name, phone }) => (
+            <li
+              className={css.item}
+              key={id}
             >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+              <div className={css.box}>
+                <p className={css.name}>{name}</p>
+                <p className={css.phone}>{phone}</p>
+              </div>
+              <button
+                className={css.button}
+                id={id}
+                type='button'
+                onClick={handleDelete}
+              >
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

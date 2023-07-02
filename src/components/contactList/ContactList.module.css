@@ -3,6 +3,9 @@
   margin: 0 auto;
   width: calc(100vw / 2);
 }
+.info {
+  color: #5e81ac;
+}
 .list {
   display: flex;
   flex-direction: column;
