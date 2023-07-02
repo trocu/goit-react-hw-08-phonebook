@@ -3,13 +3,13 @@ import { Report } from 'notiflix/build/notiflix-report-aio';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from '../../redux/selectors';
-// import { addContact } from '../../redux/contactsSlice';
+import { addContact } from '../../redux/operations';
 
 export const ContactForm = () => {
   const contacts = useSelector(selectContacts);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -29,7 +29,7 @@ export const ContactForm = () => {
       Report.info(`${name} is already in contacts!`);
       return;
     }
-    // dispatch(addContact(name, number));
+    dispatch(addContact({ name: name, phone: number }));
     setName('');
     setNumber('');
   };
