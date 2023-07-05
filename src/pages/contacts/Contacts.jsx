@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import ContactForm from '../../components/contactForm/ContactForm';
 import Filter from '../../components/filter/Filter';
-import Loader from '../../components/loader/Loader';
 import ContactList from '../../components/contactList/ContactList';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from '../../redux/contacts/operations';
@@ -23,7 +22,7 @@ const Contacts = () => {
       <h2>Contacts</h2>
       <Filter />
       {error && <p>Whoops, something went wrong</p>}
-      {isLoading && !error && <Loader />}
+      {isLoading && !error && <div>Loading...</div>}
       {!isLoading && <ContactList />}
     </>
   );
