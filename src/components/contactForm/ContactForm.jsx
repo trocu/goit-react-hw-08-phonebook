@@ -2,10 +2,10 @@ import css from './ContactForm.module.css';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from '../../redux/selectors';
-import { addContact } from '../../redux/operations';
+import { selectContacts } from '../../redux/contacts/selectors';
+import { addContact } from '../../redux/contacts/operations';
 
-export const ContactForm = () => {
+const ContactForm = () => {
   const contacts = useSelector(selectContacts);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -74,3 +74,5 @@ export const ContactForm = () => {
     </form>
   );
 };
+
+export default ContactForm;

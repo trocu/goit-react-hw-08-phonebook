@@ -1,5 +1,5 @@
 {
-  "name": "goit-react-hw-02-phonebook",
+  "name": "goit-react-hw-08-phonebook",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -18,7 +18,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-loader-spinner": "^5.3.4",
-    "react-redux": "^8.1.1"
+    "react-redux": "^8.1.1",
+    "react-router-dom": "^6.14.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
