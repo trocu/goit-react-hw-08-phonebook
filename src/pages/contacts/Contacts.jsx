@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ContactForm from '../../components/contactForm/ContactForm';
 import Filter from '../../components/filter/Filter';
 import ContactList from '../../components/contactList/ContactList';
-import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from '../../redux/contacts/operations';
 import { selectError, selectIsLoading } from '../../redux/contacts/selectors';
 
@@ -27,5 +27,7 @@ const Contacts = () => {
     </>
   );
 };
+
+//Add Loader instead loading div
 
 export default Contacts;

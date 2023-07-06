@@ -1,7 +1,7 @@
-import css from './ContactForm.module.css';
-import { Report } from 'notiflix/build/notiflix-report-aio';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Report } from 'notiflix/build/notiflix-report-aio';
+import css from './ContactForm.module.css';
 import { selectContacts } from '../../redux/contacts/selectors';
 import { addContact } from '../../redux/contacts/operations';
 
