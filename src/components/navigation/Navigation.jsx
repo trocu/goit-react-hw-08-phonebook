@@ -2,7 +2,8 @@ import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 
 const Navigation = () => {
-  const { isLoggedIn } = useAuth;
+  const { isLoggedIn } = useAuth();
+  console.log('Navigation', isLoggedIn);
   return (
     <nav>
       <NavLink to='/'>Home</NavLink>

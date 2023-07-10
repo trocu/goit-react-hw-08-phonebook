@@ -6,7 +6,7 @@ import css from './AppBar.module.css';
 
 const AppBar = () => {
   const { isLoggedIn } = useAuth();
-  console.log('is:', isLoggedIn);
+  console.log('AppBar:', isLoggedIn);
   return (
     <header className={css.header}>
       <Navigation />

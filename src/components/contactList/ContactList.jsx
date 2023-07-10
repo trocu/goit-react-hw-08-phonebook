@@ -17,14 +17,14 @@ const ContactList = () => {
         <b className={css.info}>The phonebook is empty</b>
       ) : (
         <ul className={css.list}>
-          {filteredContacts.map(({ id, name, phone }) => (
+          {filteredContacts.map(({ id, name, number }) => (
             <li
               className={css.item}
               key={id}
             >
               <div className={css.box}>
                 <p className={css.name}>{name}</p>
-                <p className={css.phone}>{phone}</p>
+                <p className={css.phone}>{number}</p>
               </div>
               <button
                 className={css.button}

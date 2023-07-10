@@ -32,6 +32,7 @@ const authSlice = createSlice({
       state.isRefreshing = false;
       state.user = action.payload.user;
       state.token = action.payload.token;
+      state.error = null;
     },
     [register.pending]: handlePending,
     [register.rejected]: handleRejected,
@@ -40,6 +41,7 @@ const authSlice = createSlice({
       state.isRefreshing = false;
       state.user = action.payload.user;
       state.token = action.payload.token;
+      state.error = null;
     },
     [logIn.pending]: handlePending,
     [logIn.rejected]: handleRejected,
@@ -48,6 +50,7 @@ const authSlice = createSlice({
       state.isRefreshing = false;
       state.user = { name: null, email: null };
       state.token = null;
+      state.error = null;
     },
     [logOut.pending]: handlePending,
     [logOut.rejected]: handleRejected,
@@ -55,6 +58,7 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.isRefreshing = false;
       state.user = action.payload;
+      state.error = null;
     },
     [refreshUser.pending]: handlePending,
     [refreshUser.rejected]: handleRejected,

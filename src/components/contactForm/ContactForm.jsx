@@ -29,7 +29,7 @@ const ContactForm = () => {
       Report.info(`${name} is already in contacts!`);
       return;
     }
-    dispatch(addContact({ name: name, phone: number }));
+    dispatch(addContact({ name, number }));
     setName('');
     setNumber('');
   };
