@@ -15,7 +15,10 @@ const AppBar = () => {
       // width='100%'
       p={15}
     >
-      <Flex justify='space-between'>
+      <Flex
+        justify='space-between'
+        align='center'
+      >
         <Navigation />
         <HStack>{isLoggedIn ? <UserMenu /> : <AuthNav />}</HStack>
       </Flex>

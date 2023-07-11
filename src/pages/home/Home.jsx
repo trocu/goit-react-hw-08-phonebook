@@ -1,5 +1,6 @@
-import { Box, Heading, Img, Text } from '@chakra-ui/react';
-import chesterton from '../../assets/chesterton.webp';
+import { Avatar, Box, Flex, Heading, Text } from '@chakra-ui/react';
+import bell from '../../assets/bell.webp';
+
 const Home = () => {
   return (
     <Box
@@ -8,18 +9,13 @@ const Home = () => {
       p={15}
       maxW='32rem'
     >
-      {/* <Img
-        boxSize='100vw'
-        objectFit='cover'
-        src=''
-        alt=''
-      /> */}
       <Heading
         as='h1'
         size='3xl'
         color='red.500'
         fontWeight='bold'
         textAlign='left'
+        mt='10'
       >
         Phone book
       </Heading>
@@ -31,8 +27,43 @@ const Home = () => {
       >
         Your personal contact database
       </Heading>
-      <Text></Text>
-      <Img src={chesterton} />
+      <Box mt='10'>
+        <Flex spacing='4'>
+          <Flex
+            gap='4'
+            alignItems='center'
+            flexWrap='wrap'
+          >
+            <Avatar
+              size='lg'
+              name='Segun Adebayo'
+              src={bell}
+            />
+
+            <Box>
+              <Heading
+                size='sm'
+                as='i'
+                color='gray.600'
+              >
+                “Mr. Watson – Come here – I want to see you.”
+              </Heading>
+              <Text
+                fontSize='sm'
+                color='gray.500'
+              >
+                [First intelligible words spoken over the telephone]
+              </Text>
+              <Text
+                color='red.500'
+                fontWeight='semibold'
+              >
+                - Alexander Graham Bell
+              </Text>
+            </Box>
+          </Flex>
+        </Flex>
+      </Box>
     </Box>
   );
 };

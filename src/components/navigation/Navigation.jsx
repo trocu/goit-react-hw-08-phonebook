@@ -25,7 +25,7 @@ const Navigation = () => {
             {' '}
             <ChakraLink
               as='span'
-              color='gray.600'
+              color='gray.700'
               fontWeight='semibold'
               _hover={{ color: 'red.500', textDecoration: 'none' }}
             >
