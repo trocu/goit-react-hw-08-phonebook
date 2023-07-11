@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import { Box } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { lazy, useEffect } from 'react';
 import { refreshUser } from './redux/auth/operations';
@@ -27,50 +26,46 @@ const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <Box p={5}>
-      <b>Refreshing user...</b>
-    </Box>
+    <b>Refreshing user...</b>
   ) : (
-    <Box p={5}>
-      <Routes>
+    <Routes>
+      <Route
+        path='/'
+        element={<SharedLayout />}
+      >
         <Route
-          path='/'
-          element={<SharedLayout />}
-        >
-          <Route
-            index
-            element={<Home />}
-          />
-          <Route
-            path='register'
-            element={
-              <RestrictedRoute
-                redirectTo='/contacts'
-                component={<Register />}
-              />
-            }
-          />
-          <Route
-            path='login'
-            element={
-              <RestrictedRoute
-                redirectTo='/contacts'
-                component={<Login />}
-              />
-            }
-          />
-          <Route
-            path='contacts'
-            element={
-              <PrivateRoute
-                redirectTo='/login'
-                component={<Contacts />}
-              />
-            }
-          />
-        </Route>
-      </Routes>
-    </Box>
+          index
+          element={<Home />}
+        />
+        <Route
+          path='register'
+          element={
+            <RestrictedRoute
+              redirectTo='/contacts'
+              component={<Register />}
+            />
+          }
+        />
+        <Route
+          path='login'
+          element={
+            <RestrictedRoute
+              redirectTo='/contacts'
+              component={<Login />}
+            />
+          }
+        />
+        <Route
+          path='contacts'
+          element={
+            <PrivateRoute
+              redirectTo='/login'
+              component={<Contacts />}
+            />
+          }
+        />
+      </Route>
+    </Routes>
   );
 };
 

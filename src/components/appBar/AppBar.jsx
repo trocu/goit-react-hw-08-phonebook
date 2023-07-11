@@ -10,7 +10,11 @@ const AppBar = () => {
   const { isLoggedIn } = useAuth();
   console.log('AppBar:', isLoggedIn);
   return (
-    <Box as='header'>
+    <Box
+      as='header'
+      // width='100%'
+      p={15}
+    >
       <Flex justify='space-between'>
         <Navigation />
         <HStack>{isLoggedIn ? <UserMenu /> : <AuthNav />}</HStack>

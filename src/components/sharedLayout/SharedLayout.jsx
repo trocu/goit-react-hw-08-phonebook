@@ -4,12 +4,12 @@ import AppBar from '../appBar/AppBar';
 
 const SharedLayout = () => {
   return (
-    <div>
+    <>
       <AppBar />
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
-    </div>
+    </>
   );
 };
 
