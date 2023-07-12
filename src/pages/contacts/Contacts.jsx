@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Box, Heading, Text } from '@chakra-ui/react';
 import ContactForm from '../../components/contactForm/ContactForm';
 import Filter from '../../components/filter/Filter';
 import ContactList from '../../components/contactList/ContactList';
 import { fetchContacts } from '../../redux/contacts/operations';
 import { selectError, selectIsLoading } from '../../redux/contacts/selectors';
-import { Heading } from '@chakra-ui/react';
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -17,10 +17,13 @@ const Contacts = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <Box
+      p={15}
+      align='center'
+    >
       <Heading
         as='h2'
-        size='lg'
+        size='xl'
         color='gray.700'
         textAlign='center'
         mt='25px'
@@ -30,21 +33,35 @@ const Contacts = () => {
       <ContactForm />
       <Heading
         as='h2'
-        size='lg'
+        size='xl'
         color='gray.700'
         textAlign='center'
-        mt='25px'
+        mt='45px'
       >
         Contacts
       </Heading>
       <Filter />
-      {error && <p>Whoops, something went wrong</p>}
-      {isLoading && !error && <div>Loading...</div>}
+      {error && (
+        <Text
+          fontSize='md'
+          mt='10px'
+          color='gray.600'
+        >
+          Whoops, something went wrong
+        </Text>
+      )}
+      {isLoading && !error && (
+        <Text
+          fontSize='md'
+          mt='10px'
+          color='gray.600'
+        >
+          Loading...
+        </Text>
+      )}
       {!isLoading && <ContactList />}
-    </>
+    </Box>
   );
 };
-
-//Add Loader instead loading div
 
 export default Contacts;

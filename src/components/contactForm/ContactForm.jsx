@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Report } from 'notiflix/build/notiflix-report-aio';
-// import css from './ContactForm.module.css';
-import { selectContacts } from '../../redux/contacts/selectors';
-import { addContact } from '../../redux/contacts/operations';
 import {
   Box,
   Flex,
@@ -16,14 +13,14 @@ import {
 } from '@chakra-ui/react';
 import { PhoneIcon } from '@chakra-ui/icons';
 import { FaUser } from 'react-icons/fa';
+import { selectContacts } from '../../redux/contacts/selectors';
+import { addContact } from '../../redux/contacts/operations';
 
 const ContactForm = () => {
   const contacts = useSelector(selectContacts);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
-  console.log(name);
-  console.log(number);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -65,6 +62,7 @@ const ContactForm = () => {
               />
             </InputLeftElement>
             <Input
+              focusBorderColor='red.500'
               type='text'
               name='name'
               value={name}
@@ -83,6 +81,7 @@ const ContactForm = () => {
               <PhoneIcon color='gray.300' />
             </InputLeftElement>
             <Input
+              focusBorderColor='red.500'
               type='tel'
               name='number'
               value={number}
@@ -93,18 +92,19 @@ const ContactForm = () => {
             />
           </InputGroup>
         </FormControl>
+
         <Box
           as='button'
           type='submit'
           width='120px'
           p={1}
+          mt='20px'
           bg='red.500'
           fontWeight='semibold'
           fontSize='14px'
           color='white'
           border='1px solid red.500'
           borderRadius='25px'
-          cursor='pointer'
           transition='transform 250ms'
           boxShadow='0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
     0px 2px 1px -1px rgba(0, 0, 0, 0.12)'

@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Divider } from '@chakra-ui/react';
+import { Box, Divider } from '@chakra-ui/react';
 import AppBar from '../appBar/AppBar';
 
 const SharedLayout = () => {
@@ -8,7 +8,7 @@ const SharedLayout = () => {
     <>
       <AppBar />
       <Divider />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Box p={15}>Loading...</Box>}>
         <Outlet />
       </Suspense>
     </>

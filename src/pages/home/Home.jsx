@@ -17,7 +17,7 @@ const Home = () => {
         textAlign='left'
         mt='10'
       >
-        Phone book
+        Phonebook
       </Heading>
       <Heading
         as='h2'

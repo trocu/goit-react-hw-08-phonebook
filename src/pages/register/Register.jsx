@@ -1,10 +1,11 @@
+import { Box } from '@chakra-ui/react';
 import RegisterForm from '../../components/registerForm/RegisterForm';
 
 const Register = () => {
   return (
-    <div>
+    <Box p={15}>
       <RegisterForm />
-    </div>
+    </Box>
   );
 };
 

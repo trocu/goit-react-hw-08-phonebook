@@ -6,10 +6,9 @@ import { useAuth } from '../../hooks/useAuth';
 
 const Navigation = () => {
   const { isLoggedIn } = useAuth();
-  console.log('Navigation', isLoggedIn);
   return (
     <Box as='nav'>
-      <HStack spacing='5px'>
+      <HStack spacing='15px'>
         <NavLink to='/'>
           <ChakraLink
             as='span'
@@ -22,10 +21,9 @@ const Navigation = () => {
         </NavLink>
         {isLoggedIn && (
           <NavLink to='/contacts'>
-            {' '}
             <ChakraLink
               as='span'
-              color='gray.700'
+              color='gray.600'
               fontWeight='semibold'
               _hover={{ color: 'red.500', textDecoration: 'none' }}
             >

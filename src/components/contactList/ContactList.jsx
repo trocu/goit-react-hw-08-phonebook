@@ -1,7 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
-import css from './ContactList.module.css';
 import { selectFilteredContacts } from '../../redux/contacts/selectors';
 import { deleteContact } from '../../redux/contacts/operations';
+import {
+  Box,
+  Card,
+  CardBody,
+  Flex,
+  Heading,
+  IconButton,
+  Stack,
+  StackDivider,
+  Text,
+  Tooltip,
+} from '@chakra-ui/react';
+import { CloseIcon } from '@chakra-ui/icons';
 
 const ContactList = () => {
   const filteredContacts = useSelector(selectFilteredContacts);
@@ -12,33 +24,83 @@ const ContactList = () => {
   };
 
   return (
-    <div className={css.wrapper}>
+    <Box
+      mt='25px'
+      display='flex'
+      flexDirection='column'
+      align='center'
+    >
       {filteredContacts.length === 0 ? (
-        <b className={css.info}>The phonebook is empty</b>
+        <Text
+          fontSize='md'
+          color='gray.600'
+        >
+          The phonebook is empty
+        </Text>
       ) : (
-        <ul className={css.list}>
+        <ul>
           {filteredContacts.map(({ id, name, number }) => (
             <li
-              className={css.item}
               key={id}
+              style={{ listStyleType: 'none' }}
             >
-              <div className={css.box}>
-                <p className={css.name}>{name}</p>
-                <p className={css.phone}>{number}</p>
-              </div>
-              <button
-                className={css.button}
-                id={id}
-                type='button'
-                onClick={handleDelete}
+              <Card
+                maxW='400px'
+                mt='10px'
               >
-                Delete
-              </button>
+                <CardBody>
+                  <Stack
+                    divider={<StackDivider />}
+                    spacing='4'
+                  >
+                    <Box>
+                      <Flex
+                        justify='space-between'
+                        align='center'
+                      >
+                        <Box>
+                          <Heading
+                            size='xs'
+                            textTransform='uppercase'
+                          >
+                            {name}
+                          </Heading>
+                          <Text
+                            pt='2'
+                            fontSize='sm'
+                            align='left'
+                            color='red.500'
+                          >
+                            {number}
+                          </Text>
+                        </Box>
+                        <Tooltip
+                          hasArrow
+                          label='Delete'
+                          bg='red.500'
+                        >
+                          <IconButton
+                            id={id}
+                            aria-label='Delete button'
+                            onClick={handleDelete}
+                            color='gray.500'
+                            colorScheme='white'
+                            size='sm'
+                            _hover={{ color: 'red.500' }}
+                          >
+                            <CloseIcon pointerEvents='none' />
+                          </IconButton>
+                        </Tooltip>
+                      </Flex>
+                    </Box>
+                  </Stack>
+                </CardBody>
+              </Card>
             </li>
           ))}
         </ul>
       )}
-    </div>
+    </Box>
   );
 };
 

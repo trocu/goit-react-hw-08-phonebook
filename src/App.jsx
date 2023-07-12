@@ -1,14 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { lazy, useEffect } from 'react';
+import { Box } from '@chakra-ui/react';
 import { refreshUser } from './redux/auth/operations';
 import { useAuth } from './hooks/useAuth';
-// import './App.css';
 import SharedLayout from './components/sharedLayout/SharedLayout';
-// import Home from './pages/home/Home';
-// import Contacts from './pages/contacts/Contacts';
-// import Register from './pages/register/Register';
-// import Login from './pages/login/Login';
 import RestrictedRoute from './components/restrictedRoute/RestrictedRoute';
 import PrivateRoute from './components/privateRoute/PrivateRoute';
 
@@ -26,7 +22,7 @@ const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <b>Refreshing user...</b>
+    <Box p={15}>Refreshing user...</Box>
   ) : (
     <Routes>
       <Route

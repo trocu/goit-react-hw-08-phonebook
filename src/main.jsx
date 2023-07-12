@@ -1,12 +1,11 @@
 import ReactDOM from 'react-dom/client';
 import { StrictMode } from 'react';
 import { Provider } from 'react-redux';
-import { persistor, store } from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
-// import './index.css';
-import App from './App.jsx';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ChakraProvider } from '@chakra-ui/react';
+import { persistor, store } from './redux/store';
+import App from './App.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
