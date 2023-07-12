@@ -5,6 +5,7 @@ import Filter from '../../components/filter/Filter';
 import ContactList from '../../components/contactList/ContactList';
 import { fetchContacts } from '../../redux/contacts/operations';
 import { selectError, selectIsLoading } from '../../redux/contacts/selectors';
+import { Heading } from '@chakra-ui/react';
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -17,9 +18,25 @@ const Contacts = () => {
 
   return (
     <>
-      <h1>Phonebook</h1>
+      <Heading
+        as='h2'
+        size='lg'
+        color='gray.700'
+        textAlign='center'
+        mt='25px'
+      >
+        Phonebook
+      </Heading>
       <ContactForm />
-      <h2>Contacts</h2>
+      <Heading
+        as='h2'
+        size='lg'
+        color='gray.700'
+        textAlign='center'
+        mt='25px'
+      >
+        Contacts
+      </Heading>
       <Filter />
       {error && <p>Whoops, something went wrong</p>}
       {isLoading && !error && <div>Loading...</div>}
