@@ -1,6 +1,6 @@
 import { Avatar, Box, Flex, Grid, GridItem, Heading, Img, Text } from '@chakra-ui/react';
 import bell from '../../assets/bell.webp';
-import phone from '../../assets/phone.webp';
+import phoneTwo from '../../assets/phoneTwo.webp';
 
 const Home = () => {
   return (
@@ -77,7 +77,10 @@ const Home = () => {
           </Box>
         </GridItem>
         <GridItem colSpan={1}>
-          <Img src={phone} />
+          <Img
+            src={phoneTwo}
+            alt='Phone'
+          />
         </GridItem>
       </Grid>
     </Box>
