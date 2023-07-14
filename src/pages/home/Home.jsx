@@ -7,19 +7,15 @@ const Home = () => {
     <Box
       as='main'
       height='100vh'
-      pl={15}
+      // pl={15}
       maxW='32rem'
     >
       <Grid
         h='100vh'
         w='100vw'
-        templateColumns='repeat(2, 1fr)'
-        gap={4}
+        templateColumns='1fr 1fr'
       >
-        <GridItem
-          rowSpan={1}
-          colSpan={1}
-        >
+        <GridItem pl={15}>
           <Heading
             as='h1'
             size='3xl'
